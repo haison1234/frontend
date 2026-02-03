@@ -1,38 +1,229 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+div[style*="padding: 40"] {
+  width: 100%;
+  max-width: 520px;
+  background: white;
+  padding: 35px !important;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+  color: #1f2937;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+
+input[placeholder="Enter todo"] {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+  background: #fafbfc;
+}
+
+input[placeholder="Enter todo"]:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+
+button[onClick*="addTodo"],
+button:nth-of-type(1) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  width: 100%;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[onClick*="addTodo"]:hover,
+button:nth-of-type(1):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.35);
+}
+
+
+.todos-table {
+  width: 100%;
+  margin-top: 5px;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  table-layout: fixed;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.todos-table thead {
+  background: linear-gradient(to right, #f3f4f6 0%, #f9fafb 100%);
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.todos-table th {
+  padding: 13px 12px;
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #6b7280;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.todos-table th:first-child {
+  width: 65%;
+}
+
+.todos-table th:last-child {
+  width: 35%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.todos-table tbody tr {
+  border-bottom: 1px solid #f3f4f6;
+  transition: all 0.2s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.todos-table tbody tr:hover {
+  background: #fafbfc;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.todos-table tbody tr.edit-row {
+  background: #f0f4ff;
+}
+
+.todos-table td {
+  padding: 11px 12px;
+  font-size: 14px;
+  color: #374151;
+  vertical-align: middle;
+}
+
+.todos-table td:first-child {
+  width: 65%;
+  word-break: break-word;
+}
+
+.todos-table td:last-child {
+  width: 35%;
+}
+
+
+.actions-cell {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 6px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-wrap: wrap;
+}
+
+.btn-edit, .btn-save, .btn-cancel, .btn-delete {
+  padding: 5px 11px;
+  font-size: 11px;
+  border-radius: 6px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.btn-edit {
+  background: #dbeafe;
+  color: #0369a1;
+  border-color: #bae6fd;
+}
+
+.btn-edit:hover {
+  background: #0ea5e9;
   color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(14, 165, 233, 0.25);
 }
 
-.App-link {
-  color: #61dafb;
+.btn-save {
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-save:hover {
+  background: #16a34a;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.25);
+}
+
+.btn-cancel {
+  background: #f3f4f6;
+  color: #6b7280;
+  border-color: #e5e7eb;
+}
+
+.btn-cancel:hover {
+  background: #6b7280;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(107, 114, 128, 0.25);
+}
+
+.btn-delete {
+  background: #fee2e2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25);
+}
+
+.table-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 13px;
+  background: #fafbfc;
+  transition: all 0.2s ease;
+}
+
+.table-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
 }
